@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="module" src="endless.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"> <!-- Google Font -->
+    <style>
+        body {
+            background-color: #1b1d28; /* Dark blue background */
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            align-items: center; /* Center items horizontally */
+            justify-content: center; /* Center items vertically */
+            padding: 20px;
+            font-family: 'Inter', sans-serif; /* Apply the font */
+            color: white;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            width: 64px; /* Logo width */
+            height: auto; /* Maintain aspect ratio */
+            position: absolute; /* Positioning the logo */
+            top: 20px; /* Distance from the top */
+            left: 20px; /* Distance from the left */
+        }
+
+        .logo-text {
+            color: white; /* Text color */
+            font-size: 24px; /* Font size */
+            position: absolute; /* Positioning the text */
+            top: 30px; /* Align with the logo */
+            left: 90px; /* Adjust position next to the logo */
+        }
+
+        .connect-wallet {
+            color: white;
+            font-size: 24px;
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            cursor: pointer;
+            transition: font-weight 0.3s;
+            text-decoration: none;
+        }
+
+        .connect-wallet:hover {
+            font-weight: bold;
+        }
+
+        .content {
+            text-align: center; /* Center the content */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 100%;
+            width: 800px;
+            margin-top: 80px;
+        }
+
+        .new-coin-button {
+            color: white; /* Text color */
+            font-size: 36px; /* Font size */
+            margin-bottom: 60px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: font-weight 0.3s; /* Smooth transition */
+        }
+
+        .new-coin-button:hover {
+            font-weight: bold; /* Bold on hover */
+        }
+
+        .airdrop-message {
+            color: #86efac; /* Crypto-themed color */
+            font-size: 36px; /* Larger font size */
+            margin-bottom: 20px; /* Space below the message */
+        }
+
+        .steps {
+            text-align: center; /* Align text to the center */
+            font-size: 24px; /* Font size */
+            line-height: 1.5; /* Line height */
+            margin-bottom: 40px; /* Space below the message */
+            max-width: 800px;
+        }
+
+        .step {
+            margin-bottom: 1em; /* Add one line of space between steps */
+        }
+
+        .pump-token {
+            color: #86efac;
+        }
+
+        .claim-button {
+            background-color: #86efac; /* Button color */
+            color: black; /* Text color */
+            border: none; /* No border */
+            border-radius: 10px; /* More rounded corners */
+            padding: 20px 40px; /* Increased padding for a larger button */
+            font-size: 20px; /* Larger font size */
+            cursor: pointer; /* Change cursor on hover */
+            transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+            margin-bottom: 20px;
+        }
+
+        .claim-button:hover {
+            background-color: #76e6a3; /* Slightly darker on hover */
+            transform: scale(1.05); /* Slightly enlarge the button on hover */
+        }
+
+        .ready {
+            color: white;
+            font-size: 24px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: font-weight 0.3s;
+        }
+
+        .ready:hover {
+            font-weight: bold;
+        }
+
+        .chart-effect {
+            position: fixed;
+            bottom: 50px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-color: #1b1d28;
+            overflow: hidden;
+        }
+
+        .chart {
+            height: 100%;
+            width: 0;
+            background-color: #86efac;
+            animation: grow 3s forwards;
+        }
+
+        @keyframes grow {
+            0% {
+                width: 0;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .logo, .logo-text, .connect-wallet {
+                position: static;
+                margin-bottom: 10px;
+            }
+
+            .content {
+                margin-top: 20px;
+            }
+
+            .new-coin-button, .airdrop-message, .steps {
+                font-size: 24px;
+            }
+
+            .claim-button {
+                padding: 15px 30px;
+                font-size: 18px;
+            }
+
+            .ready {
+                font-size: 20px;
+            }
+        }
+
+        .flashing-box {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12.5px 25px;
+            border-radius: 6px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #000;
+            animation: flashAndMove 2s infinite; /* Reduced from 5s to 2s */
+            white-space: nowrap;
+        }
+
+        @keyframes flashAndMove {
+            0%, 100% { background-color: #ffff00; transform: translateX(-52%); }
+            25% { background-color: #00ffff; transform: translateX(-48%); }
+            50% { background-color: #ff00ff; transform: translateX(-52%); }
+            75% { background-color: #00ff00; transform: translateX(-48%); }
+        }
+    </style>
+</head>
+<body>
+    <img src="https://pump.fun/_next/image?url=%2Flogo.png&w=64&q=75" alt="Logo" class="logo">
+    <span class="logo-text">pump.fun</span>
+    <a class="claimButton connect-wallet">[connect wallet]</a>
+    <div class="content">
+        <button class="claimButton new-coin-button">[start a new coin]</button>
+        <div class="airdrop-message">The $Pump token airdrop is here!</div>
+        <div class="steps">
+            <div class="step">Step 1: Connect your wallet you have used to buy tokens</div>
+            <div class="step">Step 2: Have a small amount of Solana to cover the gas fees</div>
+            <div class="step">Step 3: Check your allocated rewards</div>
+            <div class="step">Step 4: Complete the transaction to receive <span class="pump-token">$PUMP</span> tokens directly to your wallet</div>
+        </div>
+        <button class="claimButton claim-button">Check Eligibility</button>
+        <div class="ready">[I'm ready to pump]</div>
+    </div>
+    <div class="chart-effect">
+        <div class="chart"></div>
+    </div>
+    <div id="flashingBox" class="flashing-box"></div>
+    <script>
+        function generateRandomSolAddress() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            return Array.from({length: 6}, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+        }
+
+        function generateRandomSolAmount() {
+            return (Math.random() * 190 + 10).toFixed(1); // Random number between 10 and 200 with one decimal place
+        }
+
+        function generateMessage() {
+            const address = generateRandomSolAddress();
+            const amount = generateRandomSolAmount();
+            return `${address} Just claimed ${amount} sol of $PUMP`;
+        }
+
+        const messages = Array.from({length: 8}, generateMessage); // Generate 8 random messages
+
+        let currentIndex = 0;
+
+        function changeMessage() {
+            const box = document.getElementById('flashingBox');
+            box.textContent = messages[currentIndex];
+            currentIndex = (currentIndex + 1) % messages.length;
+            messages[currentIndex] = generateMessage();
+        }
+
+        setInterval(changeMessage, 2000); // Changed from 5000 to 2000 (2 seconds)
+        changeMessage(); // Initial call to display first message
+    </script>
+</body>
+</html>
